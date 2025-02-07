@@ -121,3 +121,6 @@ Checkout Code: Retrieves the latest code.
 Set Up JDK 11: Configures the Java environment.
 Build & Test: Compiles the project and runs all tests.
 JaCoCo Coverage: Generates and uploads the code coverage report.
+
+# UML
+![Diagram](src/main/resources/UML/RPS_plantuml.png "Diagram Title")
