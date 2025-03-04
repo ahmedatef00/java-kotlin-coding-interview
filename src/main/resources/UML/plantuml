@@ -1,0 +1,62 @@
+@startuml
+' Package: com.example.rps
+package "com.example.rps" {
+
+  ' Data class representing game results
+  class GameResult {
+    +playerAWins: Int
+    +playerBWins: Int
+    +draws: Int
+  }
+
+  ' Main game class that runs the rounds
+  class Game {
+    -playerA: Player
+    -playerB: Player
+    -rounds: Int = 100
+    +play(): GameResult
+  }
+
+  ' Singleton object that evaluates the outcome of a round
+  object GameEvaluator {
+    +evaluateRound(moveA: Move, moveB: Move): RoundResult
+  }
+
+  ' Enum representing possible moves
+  enum Move {
+    ROCK
+    PAPER
+    SCISSORS
+  }
+
+  ' Player interface, implemented by different player types
+  interface Player {
+    +nextMove(): Move
+  }
+
+  ' Player that chooses moves at random
+  class RandomPlayer {
+    -random: Random
+    +nextMove(): Move
+  }
+
+  ' Player that always chooses ROCK
+  class RockPlayer {
+    +nextMove(): Move
+  }
+
+  ' Enum representing the outcome of a round
+  enum RoundResult {
+    WIN
+    LOSE
+    DRAW
+  }
+
+  ' Relationships:
+  Game --> Player : playerA
+  Game --> Player : playerB
+  Game --> GameEvaluator : uses
+  RandomPlayer ..|> Player
+  RockPlayer ..|> Player
+}
+@enduml
